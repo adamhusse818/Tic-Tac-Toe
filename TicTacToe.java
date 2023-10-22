@@ -4,23 +4,32 @@ import java.awt.event.*;
 import java.util.Random;
 import java.lang.Thread;
 
-public class TicTacToe implements ActionListener{
-    JFrame frame = new JFrame("Tic-Tac-Toe");
-    JPanel topPanel = new JPanel();
-    JPanel playBoard = new JPanel();
-    JLabel label = new JLabel("Tic-Tac-Toe! Let's see who's first...");
-    JButton[] buttons = new JButton[9];
-    int playerTurn;
-    int count = 0;
-    boolean threeInARow = false;
+public class TicTacToe extends JFrame implements ActionListener{
+    private JPanel topPanel;
+    private JPanel playBoard;
+    private JLabel label;
+    private JButton[] buttons;
+    private int playerTurn;
+    private int count;
+    private boolean threeInARow;
 
     public TicTacToe() {
+        // Initialize fields and set frame title
+         this.setTitle("Tic-Tac-Toe");
+         topPanel = new JPanel();
+         playBoard = new JPanel();
+         label = new JLabel("Tic-Tac-Toe! Let's see who's first...");
+         buttons = new JButton[9];
+         count = 0;
+         threeInARow = false;
+
         // Setting up the frame
-        frame.setSize(600, 600);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setResizable(false);
-        frame.setLayout(null);
-        frame.setVisible(true);
+        this.setSize(600, 600);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
+        this.setLayout(null);
+        this.setLocationRelativeTo(null);
+        this.setVisible(true);
 
         // Setting up the label for the top panel
         label.setForeground(Color.yellow);
@@ -30,13 +39,13 @@ public class TicTacToe implements ActionListener{
         topPanel.setBackground(Color.black);
         topPanel.setBounds(0, 0, 600, 50);
         topPanel.add(label);
-        frame.add(topPanel);
+        this.add(topPanel);
 
         // Setting up the actual board for the game
         playBoard.setLayout(new GridLayout(3, 3, 5, 5));
         playBoard.setBackground(Color.lightGray);
         playBoard.setBounds(0, 50, 600, 520);
-        frame.add(playBoard);
+        this.add(playBoard);
 
         // Creating the buttons
         for (int i = 0; i < buttons.length; i++) {
@@ -50,7 +59,7 @@ public class TicTacToe implements ActionListener{
 
         // Determine who goes first
         try{
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         }catch(Exception e){
             System.exit(0);
         }
@@ -263,5 +272,9 @@ public class TicTacToe implements ActionListener{
             }
             label.setText("Sucks to suck. Nobody won!");
         }
+    }
+
+    public static void main(String[] args){
+        new TicTacToe();
     }
 }
